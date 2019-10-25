@@ -57,7 +57,7 @@ const transfer = () => {
     const { address, secret, amount, currency, memo, to, issuer, sequence } = program;
     const remote = new Remote({ server: "wss://c04.jingtum.com:5020" });
     remote.connectPromise()
-      .then(async () => {
+      .then(() => {
         // 序列化转账数据
         const tx = serializePayment(address, amount, to, currency, memo, issuer);
 
@@ -65,9 +65,15 @@ const transfer = () => {
         tx.Sequence = Number(sequence);
         console.log("交易数据: ", JSON.stringify(tx, null, 2));
 
-        // 本地签名
-        const signedData = localSign(tx, { seed: secret });
-        console.log("签名数据: ", signedData);
+        let signedData
+        try {
+          // 本地签名
+          signedData = localSign(tx, { seed: secret });
+          console.log("签名数据: ", signedData);
+        } catch (error) {
+          remote.disconnect()
+          return reject(error);
+        }
 
         const transaction = new Transaction(remote);
         // 设置blob
