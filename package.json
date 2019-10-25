@@ -1,0 +1,29 @@
+{
+  "name": "swtc-signature-demo",
+  "version": "1.0.0",
+  "description": "SWTC签名交易demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GinMu/swtc-signature-demo.git"
+  },
+  "keywords": [
+    "signature",
+    "swtc"
+  ],
+  "author": "GinMu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GinMu/swtc-signature-demo/issues"
+  },
+  "homepage": "https://github.com/GinMu/swtc-signature-demo#readme",
+  "dependencies": {
+    "commander": "^3.0.2",
+    "swtc-factory": "^1.2.8",
+    "swtc-lib": "^1.6.33",
+    "swtc-transaction": "^1.2.19"
+  }
+}
