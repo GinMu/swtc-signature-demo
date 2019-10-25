@@ -54,9 +54,7 @@ const serializePayment = (address, amount, to, token, memo, issuer = "jGa9J9Tkqt
   return tx;
 };
 
-const getTransactionHash = (in_tx, in_v) => {
-  const wt = new Wallet(in_v.seed)
-  in_tx.SigningPubKey = wt.getPublicKey()
+const getTransactionHash = (in_tx) => {
   const prefix = 0x54584E00
   const hash = Serializer.from_json(in_tx).hash(prefix)
   return hash;
@@ -83,7 +81,7 @@ const transfer = () => {
           console.log("签名数据: ", signedData);
 
           // 获取交易hash
-          transactionHash = getTransactionHash(tx, { seed: secret });
+          transactionHash = getTransactionHash(tx);
           console.log("交易hash: ", transactionHash);
 
         } catch (error) {
